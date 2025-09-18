@@ -107,7 +107,7 @@ function PaymentSuccessInner() {
             </div>
 
             <button
-              onClick={() => router.push('/profile')}
+              onClick={() => router.push('/profile?tab=orders')}
               className='w-full h-[48px] mt-[8px] rounded-[100px] bg-[#c12116] text-white font-semibold font-[Nunito]'
             >
               See My Orders
@@ -121,7 +121,13 @@ function PaymentSuccessInner() {
 
 export default function PaymentSuccessPage() {
   return (
-    <Suspense fallback={<div className='w-full min-h-screen flex items-center justify-center'>Loading...</div>}>
+    <Suspense
+      fallback={
+        <div className='w-full min-h-screen flex items-center justify-center'>
+          Loading...
+        </div>
+      }
+    >
       <PaymentSuccessInner />
     </Suspense>
   );

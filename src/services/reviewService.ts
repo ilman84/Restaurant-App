@@ -1,4 +1,5 @@
 import apiClient from '@/lib/axios';
+import type { AxiosError } from 'axios';
 import { API_CONFIG } from '@/lib/config';
 
 export interface CreateReviewPayload {
@@ -63,18 +64,20 @@ export const reviewService = {
         payload
       );
       return data;
-    } catch (error: any) {
+    } catch (error: unknown) {
       // Handle axios errors and return them as response objects
-      if (error.response) {
-        const status = error.response.status;
-        let message = error.response.data?.message || 'Failed to create review';
+      const axiosError = error as AxiosError<{ message?: string }>;
+      if (axiosError && axiosError.response) {
+        const status = axiosError.response.status;
+        let message =
+          axiosError.response.data?.message || 'Failed to create review';
 
         // Provide specific messages for common error codes
         if (status === 409) {
           message = 'You have already reviewed this restaurant for this order.';
         } else if (status === 400) {
           message =
-            error.response.data?.message ||
+            axiosError.response.data?.message ||
             'Invalid review data. Please check your input.';
         } else if (status === 401) {
           message = 'Please log in to submit a review.';
@@ -86,7 +89,7 @@ export const reviewService = {
           success: false,
           message,
           data: {
-            ...error.response.data,
+            ...(axiosError.response.data as object),
             status,
           },
         };
@@ -94,7 +97,9 @@ export const reviewService = {
       // Handle network or other errors
       return {
         success: false,
-        message: error.message || 'Failed to create review',
+        message:
+          (error instanceof Error ? error.message : undefined) ||
+          'Failed to create review',
       };
     }
   },

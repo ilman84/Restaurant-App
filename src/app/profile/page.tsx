@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import { authService, User } from '../../services/auth';
 import Navbar from '@/components/navbar';
@@ -10,6 +10,7 @@ import Orders from '@/components/profile/orders';
 
 export default function ProfilePage() {
   const router = useRouter();
+  const params = useSearchParams();
   const [userData, setUserData] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [activeSection, setActiveSection] = useState<'profile' | 'orders'>(
@@ -55,6 +56,12 @@ export default function ProfilePage() {
 
     fetchProfile();
   }, [router]);
+
+  // Switch to My Orders when tab=orders is present
+  useEffect(() => {
+    const tab = (params.get('tab') || '').toLowerCase();
+    if (tab === 'orders') setActiveSection('orders');
+  }, [params]);
 
   const handleLogout = () => {
     authService.clearAuthData();

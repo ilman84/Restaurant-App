@@ -221,7 +221,13 @@ function ReviewPageInner() {
 
 export default function ReviewPage() {
   return (
-    <Suspense fallback={<div className='w-full min-h-screen flex items-center justify-center'>Loading...</div>}>
+    <Suspense
+      fallback={
+        <div className='w-full min-h-screen flex items-center justify-center'>
+          Loading...
+        </div>
+      }
+    >
       <ReviewPageInner />
     </Suspense>
   );

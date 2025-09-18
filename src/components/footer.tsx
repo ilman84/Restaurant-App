@@ -1,6 +1,9 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+
 export default function Footer() {
+  const router = useRouter();
   return (
     <div className='flex flex-col sm:flex-row w-full max-w-[1440px] pt-[40px] sm:pt-[80px] pr-[16px] sm:pr-[120px] pb-[40px] sm:pb-[80px] pl-[16px] sm:pl-[120px] gap-[32px] sm:gap-0 sm:justify-between items-start flex-nowrap bg-[#0a0d12] border-solid border-b border-b-[#d5d7da] relative z-[1] mt-[100px] mx-auto'>
       {/* Brand and Description Section */}
@@ -44,24 +47,42 @@ export default function Footer() {
             </span>
           </div>
           <div className='flex flex-col gap-[12px] sm:gap-[8px] items-start w-full shrink-0 flex-nowrap relative z-[1]'>
-            <span className="flex w-auto h-[20px] sm:h-[30px] justify-start items-start shrink-0 basis-auto font-['Nunito'] text-[14px] sm:text-[16px] font-normal leading-[20px] sm:leading-[30px] text-[#fdfdfd] tracking-[-0.28px] sm:tracking-[-0.32px] relative text-left whitespace-nowrap z-[1]">
+            <button
+              onClick={() => router.push('/category')}
+              className="text-left font-['Nunito'] text-[14px] sm:text-[16px] leading-[20px] sm:leading-[30px] text-[#fdfdfd] hover:opacity-80"
+            >
               All Food
-            </span>
-            <span className="flex w-auto h-[20px] sm:h-[30px] justify-start items-start shrink-0 basis-auto font-['Nunito'] text-[14px] sm:text-[16px] font-normal leading-[20px] sm:leading-[30px] text-[#fdfdfd] tracking-[-0.28px] sm:tracking-[-0.32px] relative text-left whitespace-nowrap z-[1]">
+            </button>
+            <button
+              onClick={() => router.push('/category?tag=nearby')}
+              className="text-left font-['Nunito'] text-[14px] sm:text-[16px] leading-[20px] sm:leading-[30px] text-[#fdfdfd] hover:opacity-80"
+            >
               Nearby
-            </span>
-            <span className="flex w-auto h-[20px] sm:h-[30px] justify-start items-start shrink-0 basis-auto font-['Nunito'] text-[14px] sm:text-[16px] font-normal leading-[20px] sm:leading-[30px] text-[#fdfdfd] tracking-[-0.28px] sm:tracking-[-0.32px] relative text-left whitespace-nowrap z-[1]">
+            </button>
+            <button
+              onClick={() => router.push('/category?tag=discount')}
+              className="text-left font-['Nunito'] text-[14px] sm:text-[16px] leading-[20px] sm:leading-[30px] text-[#fdfdfd] hover:opacity-80"
+            >
               Discount
-            </span>
-            <span className="flex w-auto h-[20px] sm:h-[30px] justify-start items-start shrink-0 basis-auto font-['Nunito'] text-[14px] sm:text-[16px] font-normal leading-[20px] sm:leading-[30px] text-[#fdfdfd] tracking-[-0.28px] sm:tracking-[-0.32px] relative text-left whitespace-nowrap z-[1]">
+            </button>
+            <button
+              onClick={() => router.push('/category?tag=bestseller')}
+              className="text-left font-['Nunito'] text-[14px] sm:text-[16px] leading-[20px] sm:leading-[30px] text-[#fdfdfd] hover:opacity-80"
+            >
               Best Seller
-            </span>
-            <span className="flex w-auto h-[20px] sm:h-[30px] justify-start items-start shrink-0 basis-auto font-['Nunito'] text-[14px] sm:text-[16px] font-normal leading-[20px] sm:leading-[30px] text-[#fdfdfd] tracking-[-0.28px] sm:tracking-[-0.32px] relative text-left whitespace-nowrap z-[1]">
+            </button>
+            <button
+              onClick={() => router.push('/category?tag=delivery')}
+              className="text-left font-['Nunito'] text-[14px] sm:text-[16px] leading-[20px] sm:leading-[30px] text-[#fdfdfd] hover:opacity-80"
+            >
               Delivery
-            </span>
-            <span className="flex w-auto h-[20px] sm:h-[30px] justify-start items-start shrink-0 basis-auto font-['Nunito'] text-[14px] sm:text-[16px] font-normal leading-[20px] sm:leading-[30px] text-[#fdfdfd] tracking-[-0.28px] sm:tracking-[-0.32px] relative text-left whitespace-nowrap z-[1]">
+            </button>
+            <button
+              onClick={() => router.push('/category?tag=lunch')}
+              className="text-left font-['Nunito'] text-[14px] sm:text-[16px] leading-[20px] sm:leading-[30px] text-[#fdfdfd] hover:opacity-80"
+            >
               Lunch
-            </span>
+            </button>
           </div>
         </div>
 
@@ -73,21 +94,36 @@ export default function Footer() {
             </span>
           </div>
           <div className='flex flex-col gap-[12px] sm:gap-[8px] items-start w-full shrink-0 flex-nowrap relative z-[1]'>
-            <span className="flex w-auto h-[20px] sm:h-[30px] justify-start items-start shrink-0 basis-auto font-['Nunito'] text-[14px] sm:text-[16px] font-normal leading-[20px] sm:leading-[30px] text-[#fdfdfd] tracking-[-0.28px] sm:tracking-[-0.32px] relative text-left whitespace-nowrap z-[1]">
+            <button
+              onClick={() => router.push('/checkout')}
+              className="text-left font-['Nunito'] text-[14px] sm:text-[16px] leading-[20px] sm:leading-[30px] text-[#fdfdfd] hover:opacity-80"
+            >
               How to Order
-            </span>
-            <span className="flex w-auto h-[20px] sm:h-[30px] justify-start items-start shrink-0 basis-auto font-['Nunito'] text-[14px] sm:text-[16px] font-normal leading-[20px] sm:leading-[30px] text-[#fdfdfd] tracking-[-0.28px] sm:tracking-[-0.32px] relative text-left whitespace-nowrap z-[1]">
+            </button>
+            <button
+              onClick={() => router.push('/checkout')}
+              className="text-left font-['Nunito'] text-[14px] sm:text-[16px] leading-[20px] sm:leading-[30px] text-[#fdfdfd] hover:opacity-80"
+            >
               Payment Methods
-            </span>
-            <span className="flex w-auto h-[20px] sm:h-[30px] justify-start items-start shrink-0 basis-auto font-['Nunito'] text-[14px] sm:text-[16px] font-normal leading-[20px] sm:leading-[30px] text-[#fdfdfd] tracking-[-0.28px] sm:tracking-[-0.32px] relative text-left whitespace-nowrap z-[1]">
+            </button>
+            <button
+              onClick={() => router.push('/profile?tab=orders')}
+              className="text-left font-['Nunito'] text-[14px] sm:text-[16px] leading-[20px] sm:leading-[30px] text-[#fdfdfd] hover:opacity-80"
+            >
               Track My Order
-            </span>
-            <span className="flex w-auto h-[20px] sm:h-[30px] justify-start items-start shrink-0 basis-auto font-['Nunito'] text-[14px] sm:text-[16px] font-normal leading-[20px] sm:leading-[30px] text-[#fdfdfd] tracking-[-0.28px] sm:tracking-[-0.32px] relative text-left whitespace-nowrap z-[1]">
+            </button>
+            <button
+              onClick={() => router.push('/home')}
+              className="text-left font-['Nunito'] text-[14px] sm:text-[16px] leading-[20px] sm:leading-[30px] text-[#fdfdfd] hover:opacity-80"
+            >
               FAQ
-            </span>
-            <span className="flex w-auto h-[20px] sm:h-[30px] justify-start items-start shrink-0 basis-auto font-['Nunito'] text-[14px] sm:text-[16px] font-normal leading-[20px] sm:leading-[30px] text-[#fdfdfd] tracking-[-0.28px] sm:tracking-[-0.32px] relative text-left whitespace-nowrap z-[1]">
+            </button>
+            <a
+              href='zaid.2010@yahoo.com'
+              className="text-left font-['Nunito'] text-[14px] sm:text-[16px] leading-[20px] sm:leading-[30px] text-[#fdfdfd] hover:opacity-80"
+            >
               Contact Us
-            </span>
+            </a>
           </div>
         </div>
       </div>
