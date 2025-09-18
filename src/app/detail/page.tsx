@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { Suspense, useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 // Image imported via fallback component
 import ImageWithFallback from '@/components/ui/ImageWithFallback';
@@ -16,7 +16,7 @@ import { formatRupiah } from '@/lib/utils';
 import { useAppDispatch } from '@/store/hooks';
 import { addToCart, optimisticAddToCart } from '@/store/slices/cartSlice';
 
-export default function DetailPage() {
+function DetailPageInner() {
   const dispatch = useAppDispatch();
   const searchParams = useSearchParams();
   const idParam = searchParams.get('id');
@@ -463,5 +463,13 @@ export default function DetailPage() {
       {/* Footer */}
       <Footer />
     </div>
+  );
+}
+
+export default function DetailPage() {
+  return (
+    <Suspense fallback={<div className='w-full min-h-screen flex items-center justify-center'>Loading...</div>}>
+      <DetailPageInner />
+    </Suspense>
   );
 }
