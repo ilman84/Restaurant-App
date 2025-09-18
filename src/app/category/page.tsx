@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { Suspense, useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 // Image imported via fallback component
 import ImageWithFallback from '@/components/ui/ImageWithFallback';
@@ -12,7 +12,7 @@ import {
 } from '@/services/restaurantService';
 import { getRestaurantImage } from '@/lib/imageUtils';
 
-export default function CategoryPage() {
+function CategoryPageInner() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [restaurants, setRestaurants] = useState<FoodyRestaurantListItem[]>([]);
   const [menuThumbByRestaurantId, setMenuThumbByRestaurantId] = useState<
@@ -500,5 +500,13 @@ export default function CategoryPage() {
 
       <Footer />
     </div>
+  );
+}
+
+export default function CategoryPage() {
+  return (
+    <Suspense fallback={<div className="w-full min-h-screen flex items-center justify-center">Loading...</div>}>
+      <CategoryPageInner />
+    </Suspense>
   );
 }
