@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import { authService, User } from '../../services/auth';
@@ -8,7 +8,7 @@ import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
 import Orders from '@/components/profile/orders';
 
-export default function ProfilePage() {
+function ProfilePageContent() {
   const router = useRouter();
   const params = useSearchParams();
   const [userData, setUserData] = useState<User | null>(null);
@@ -383,5 +383,20 @@ export default function ProfilePage() {
       {/* Footer */}
       <Footer />
     </div>
+  );
+}
+
+export default function ProfilePage() {
+  return (
+    <Suspense fallback={
+      <div className='min-h-screen flex items-center justify-center'>
+        <div className='text-center'>
+          <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-[#c12116] mx-auto'></div>
+          <p className="mt-4 text-[#0a0d12] font-['Nunito']">Loading...</p>
+        </div>
+      </div>
+    }>
+      <ProfilePageContent />
+    </Suspense>
   );
 }
