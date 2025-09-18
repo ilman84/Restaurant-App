@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { Suspense, useMemo } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 
 function formatCurrency(n: number): string {
@@ -11,7 +11,7 @@ function formatCurrency(n: number): string {
   }
 }
 
-export default function PaymentSuccessPage() {
+function PaymentSuccessInner() {
   const params = useSearchParams();
   const router = useRouter();
 
@@ -116,5 +116,13 @@ export default function PaymentSuccessPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function PaymentSuccessPage() {
+  return (
+    <Suspense fallback={<div className='w-full min-h-screen flex items-center justify-center'>Loading...</div>}>
+      <PaymentSuccessInner />
+    </Suspense>
   );
 }
