@@ -2,13 +2,13 @@
 
 import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import reviewService from '@/services/reviewService';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 
-export default function ReviewPage() {
+function ReviewPageInner() {
   const [rating, setRating] = useState<number>(4);
   const [text, setText] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -216,5 +216,13 @@ export default function ReviewPage() {
       </div>
       <Footer />
     </div>
+  );
+}
+
+export default function ReviewPage() {
+  return (
+    <Suspense fallback={<div className='w-full min-h-screen flex items-center justify-center'>Loading...</div>}>
+      <ReviewPageInner />
+    </Suspense>
   );
 }
