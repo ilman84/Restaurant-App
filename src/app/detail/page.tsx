@@ -392,29 +392,29 @@ function DetailPageInner() {
             </div>
           </div>
 
-          {/* Review Cards - All Reviews in 2 Columns */}
-          <div className='grid grid-cols-1 lg:grid-cols-4 gap-[20px] items-start justify-center max-w-[1200px] mx-auto relative z-[131]'>
+          {/* Review Cards - 2 Columns on Mobile, 4 Columns on Desktop */}
+          <div className='grid grid-cols-2 lg:grid-cols-4 gap-[20px] items-start justify-center max-w-[1200px] mx-auto relative z-[131]'>
             {(reviews.length ? reviews : []).map((r) => (
               <div
                 key={r.id}
-                className='flex pt-[16px] pr-[16px] pb-[16px] pl-[16px] flex-col gap-[16px] items-start grow shrink-0 basis-0 flex-nowrap bg-[#fff] rounded-[16px] relative shadow-[0_0_20px_0_rgba(202,201,201,0.25)]'
+                className='flex pt-[12px] pr-[12px] pb-[12px] pl-[12px] flex-col gap-[12px] items-start grow shrink-0 basis-0 flex-nowrap bg-[#fff] rounded-[16px] relative shadow-[0_0_20px_0_rgba(202,201,201,0.25)]'
               >
-                <div className='flex w-full max-w-[238px] gap-[12px] items-start'>
-                  <div className='w-[64px] h-[64px] shrink-0 bg-[url(/images/profile-photo.png)] bg-cover bg-no-repeat rounded-[50%]' />
+                <div className='flex w-full gap-[8px] items-start'>
+                  <div className='w-[40px] h-[40px] lg:w-[64px] lg:h-[64px] shrink-0 bg-[url(/images/profile-photo.png)] bg-cover bg-no-repeat rounded-[50%]' />
                   <div className='flex flex-1 flex-col items-start'>
-                    <span className="h-[32px] self-stretch shrink-0 basis-auto font-['Nunito'] text-[16px] sm:text-[18px] font-extrabold leading-[32px] text-[#0a0d12] tracking-[-0.36px] relative text-left whitespace-nowrap">
+                    <span className="h-[24px] lg:h-[32px] self-stretch shrink-0 basis-auto font-['Nunito'] text-[12px] lg:text-[18px] font-extrabold leading-[24px] lg:leading-[32px] text-[#0a0d12] tracking-[-0.36px] relative text-left whitespace-nowrap">
                       {r.user?.name || 'Anonymous'}
                     </span>
-                    <span className="h-[30px] shrink-0 basis-auto font-['Nunito'] text-[14px] sm:text-[16px] font-normal leading-[30px] text-[#0a0d12] tracking-[-0.32px] relative text-left whitespace-nowrap">
+                    <span className="h-[20px] lg:h-[30px] shrink-0 basis-auto font-['Nunito'] text-[10px] lg:text-[16px] font-normal leading-[20px] lg:leading-[30px] text-[#0a0d12] tracking-[-0.32px] relative text-left whitespace-nowrap">
                       {new Date(r.createdAt).toLocaleString()}
                     </span>
                   </div>
                 </div>
-                <div className='flex flex-col gap-[8px] items-start self-stretch'>
-                  <div className='flex w-[100px] gap-[2px] items-center'>
-                    <div className='w-[100px] h-[20px] shrink-0 bg-[url(/images/5stars.png)] bg-contain bg-no-repeat' />
+                <div className='flex flex-col gap-[6px] lg:gap-[8px] items-start self-stretch'>
+                  <div className='flex w-[80px] lg:w-[100px] gap-[2px] items-center'>
+                    <div className='w-[80px] h-[16px] lg:w-[100px] lg:h-[20px] shrink-0 bg-[url(/images/5stars.png)] bg-contain bg-no-repeat' />
                   </div>
-                  <span className="flex w-full justify-start items-start self-stretch shrink-0 font-['Nunito'] text-[14px] sm:text-[16px] font-normal leading-[30px] text-[#0a0d12] tracking-[-0.32px] relative text-left">
+                  <span className="flex w-full justify-start items-start self-stretch shrink-0 font-['Nunito'] text-[11px] lg:text-[16px] font-normal leading-[18px] lg:leading-[30px] text-[#0a0d12] tracking-[-0.32px] relative text-left">
                     {r.comment}
                   </span>
                 </div>
