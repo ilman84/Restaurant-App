@@ -224,19 +224,23 @@ function CategoryPageInner() {
               <div className='w-[15px] h-[10px] shrink-0 bg-[url(/images/hamburger-icon.png)] bg-cover bg-no-repeat relative z-[16]' />
             </button>
           </div>
-          {/* Mobile Overlay */}
-          {isFilterOpen && (
-            <div
-              className='lg:hidden fixed inset-0 bg-[#0a0d12] bg-opacity-50 z-[20]'
-              onClick={() => setIsFilterOpen(false)}
-            />
-          )}
-          <div className='flex flex-col lg:flex-row gap-[20px] lg:gap-[40px] items-start self-stretch shrink-0 flex-nowrap relative z-[15]'>
+          <div className='flex flex-col gap-[20px] lg:flex-row lg:gap-[40px] items-start self-stretch shrink-0 flex-nowrap relative z-[15]'>
+            {/* Close Button untuk Mobile - Above Filter */}
+            {isFilterOpen && (
+              <div className='lg:hidden flex justify-end w-full mb-2 relative z-[50]'>
+                <button
+                  onClick={() => setIsFilterOpen(false)}
+                  className='flex w-[40px] h-[40px] justify-center items-center shrink-0 flex-nowrap relative z-[51] hover:bg-[#a01a12] rounded-[8px] transition-colors cursor-pointer bg-[#c12116] shadow-lg'
+                >
+                  <span className="text-white font-['Nunito'] text-[20px] font-bold leading-none">
+                    ×
+                  </span>
+                </button>
+              </div>
+            )}
             <div
               className={`flex w-full lg:w-[266px] pt-[16px] pr-0 pb-[16px] pl-0 flex-col gap-[24px] items-start shrink-0 flex-nowrap bg-[#fff] rounded-[12px] relative shadow-[0_0_20px_0_rgba(202,201,201,0.25)] z-[21] ${
-                isFilterOpen
-                  ? 'fixed top-0 left-0 h-full overflow-y-auto z-[100]'
-                  : 'hidden lg:flex'
+                isFilterOpen ? 'block lg:flex' : 'hidden lg:flex'
               }`}
             >
               <div className='flex pt-0 pr-[16px] pb-0 pl-[16px] flex-col gap-[10px] items-start self-stretch shrink-0 flex-nowrap relative z-[17]'>
@@ -244,13 +248,6 @@ function CategoryPageInner() {
                   <span className="h-[30px] self-stretch shrink-0 basis-auto font-['Nunito'] text-[16px] font-extrabold leading-[30px] text-[#0a0d12] relative text-left whitespace-nowrap z-[18]">
                     FILTER
                   </span>
-                  {/* Close Button untuk Mobile */}
-                  <button
-                    onClick={() => setIsFilterOpen(false)}
-                    className='lg:hidden flex w-[32px] h-[32px] justify-center items-center shrink-0 flex-nowrap relative z-[19] hover:bg-[#f5f5f5] rounded-[8px] transition-colors cursor-pointer'
-                  >
-                    <div className='w-[20px] h-[20px] shrink-0 bg-[url(/images/close-icon.png)] bg-cover bg-no-repeat relative z-[20]' />
-                  </button>
                 </div>
                 <span className="h-[32px] self-stretch shrink-0 basis-auto font-['Nunito'] text-[18px] font-extrabold leading-[32px] text-[#0a0d12] tracking-[-0.36px] relative text-left whitespace-nowrap z-[21]">
                   Distance
@@ -424,9 +421,7 @@ function CategoryPageInner() {
               </div>
             </div>
             <div
-              className={`flex flex-col gap-[20px] items-start grow shrink-0 basis-0 flex-nowrap relative z-[78] w-full ${
-                isFilterOpen ? 'hidden lg:flex' : ''
-              }`}
+              className={`flex flex-col gap-[20px] items-start grow shrink-0 basis-0 flex-nowrap relative z-[78] w-full`}
             >
               {/* API-backed Restaurant List */}
               <div className='w-full'>
