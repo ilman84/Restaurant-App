@@ -3,7 +3,7 @@
 import { Suspense, useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 // Image imported via fallback component
-import ImageWithFallback from '@/components/ui/ImageWithFallback';
+import ImageWithInitial from '@/components/ui/ImageWithInitial';
 import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
 import {
@@ -132,9 +132,10 @@ function DetailPageInner() {
                   key={`${img}-${idx}`}
                   className='w-full h-[240px] sm:h-[300px] lg:h-[320px] relative rounded-[16px] overflow-hidden'
                 >
-                  <ImageWithFallback
+                  <ImageWithInitial
                     src={img}
                     alt={`${detail?.name || 'Restaurant'} gallery ${idx + 1}`}
+                    fallbackText={detail?.name || 'Restaurant'}
                     fill
                     className='object-cover'
                     sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
@@ -147,9 +148,10 @@ function DetailPageInner() {
           {/* Restaurant Info */}
           <div className='flex gap-[12px] sm:gap-[16px] items-center self-stretch shrink-0 flex-nowrap relative z-[23]'>
             <div className='w-[80px] h-[80px] sm:w-[120px] sm:h-[120px] shrink-0 rounded-[100px] relative z-[24] overflow-hidden'>
-              <ImageWithFallback
+              <ImageWithInitial
                 src={logo}
                 alt={detail?.name || 'Restaurant'}
+                fallbackText={detail?.name || 'Restaurant'}
                 fill
                 className='object-cover'
                 sizes='(max-width: 768px) 80px, 120px'
@@ -278,9 +280,10 @@ function DetailPageInner() {
                     className='flex flex-col items-start bg-[#fff] rounded-[16px] relative shadow-[0_0_20px_0_rgba(202,201,201,0.25)] z-[49]'
                   >
                     <div className='h-[285px] self-stretch shrink-0 rounded-tl-[16px] rounded-tr-[16px] rounded-br-none rounded-bl-none relative z-50 overflow-hidden'>
-                      <ImageWithFallback
+                      <ImageWithInitial
                         src={getMenuItemImage(m.image)}
                         alt={m.foodName}
+                        fallbackText={m.foodName}
                         fill
                         className='object-cover'
                         sizes='(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw'
@@ -468,7 +471,13 @@ function DetailPageInner() {
 
 export default function DetailPage() {
   return (
-    <Suspense fallback={<div className='w-full min-h-screen flex items-center justify-center'>Loading...</div>}>
+    <Suspense
+      fallback={
+        <div className='w-full min-h-screen flex items-center justify-center'>
+          Loading...
+        </div>
+      }
+    >
       <DetailPageInner />
     </Suspense>
   );

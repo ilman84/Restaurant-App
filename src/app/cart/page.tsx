@@ -4,7 +4,7 @@ import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
+import ImageWithInitial from '@/components/ui/ImageWithInitial';
 import { formatRupiah } from '@/lib/utils';
 import { useAppSelector, useAppDispatch } from '@/store/hooks';
 import { toast } from 'sonner';
@@ -130,9 +130,10 @@ export default function Page() {
             >
               <div className='flex w-full gap-[8px] items-center shrink-0 flex-nowrap relative z-[41]'>
                 <div className='w-[32px] h-[32px] shrink-0 rounded-[8px] relative z-[42] overflow-hidden'>
-                  <Image
+                  <ImageWithInitial
                     src={g.restaurant.logo || '/images/store.png'}
                     alt={g.restaurant.name}
+                    fallbackText={g.restaurant.name}
                     fill
                     className='object-cover'
                     sizes='32px'
@@ -151,9 +152,10 @@ export default function Page() {
                 >
                   <div className='flex gap-[12px] items-center shrink-0 flex-1 min-w-0 relative z-[46]'>
                     <div className='w-[64px] h-[64px] shrink-0 rounded-[12px] relative z-[47] overflow-hidden'>
-                      <Image
+                      <ImageWithInitial
                         src={it.menu.image}
                         alt={it.menu.foodName}
+                        fallbackText={it.menu.foodName}
                         fill
                         className='object-cover'
                         sizes='64px'
@@ -234,27 +236,13 @@ export default function Page() {
                 <div className='w-[24px] h-[24px] shrink-0 bg-[url(/images/panah-kanan.svg)] bg-cover bg-no-repeat relative overflow-hidden z-[44]' />
               </div>
               <div className='flex justify-between items-center self-stretch shrink-0 flex-nowrap relative z-[45]'>
-                <div className='flex gap-[12px] items-center shrink-0 flex-1 min-w-0 relative z-[46]'>
-                  <div className='w-[64px] h-[64px] shrink-0 rounded-[12px] relative z-[47] overflow-hidden'>
-                    <Image
-                      src={
-                        groups[0]?.items?.[0]?.menu?.image ||
-                        '/images/burger4.png'
-                      }
-                      alt={groups[0]?.items?.[0]?.menu?.foodName || 'Menu item'}
-                      fill
-                      className='object-cover'
-                      sizes='64px'
-                    />
-                  </div>
-                  <div className='flex flex-1 min-w-0 flex-col items-start shrink-0 flex-nowrap relative z-[48]'>
-                    <span className="h-[24px] self-stretch shrink-0 basis-auto font-['Nunito'] text-[14px] font-medium leading-[24px] text-[#0a0d12] tracking-[-0.28px] relative text-left whitespace-nowrap z-[49]">
-                      Total Price
-                    </span>
-                    <span className="h-[28px] self-stretch shrink-0 basis-auto font-['Nunito'] text-[16px] font-extrabold leading-[28px] text-[#0a0d12] relative text-left whitespace-nowrap z-50">
-                      {formatRupiah(summary.totalPrice)}
-                    </span>
-                  </div>
+                <div className='flex flex-col items-start shrink-0 flex-1 min-w-0 relative z-[46]'>
+                  <span className="h-[24px] self-stretch shrink-0 basis-auto font-['Nunito'] text-[14px] font-medium leading-[24px] text-[#0a0d12] tracking-[-0.28px] relative text-left whitespace-nowrap z-[49]">
+                    Total Price
+                  </span>
+                  <span className="h-[28px] self-stretch shrink-0 basis-auto font-['Nunito'] text-[16px] font-extrabold leading-[28px] text-[#0a0d12] relative text-left whitespace-nowrap z-50">
+                    {formatRupiah(summary.totalPrice)}
+                  </span>
                 </div>
                 <div className='flex pt-[12px] pr-0 pb-[12px] pl-0 gap-[12px] justify-end items-center shrink-0 flex-nowrap relative z-[51]'>
                   <div className='flex w-[108px] gap-[12px] items-center shrink-0 flex-nowrap relative z-[52]'>

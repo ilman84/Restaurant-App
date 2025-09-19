@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import ImageWithFallback from '@/components/ui/ImageWithFallback';
+import ImageWithInitial from '@/components/ui/ImageWithInitial';
 import Footer from '@/components/footer';
 import Navbar from '@/components/navbar';
 import {
@@ -243,9 +243,10 @@ export default function HomePage() {
                         onClick={() => router.push(`/detail?id=${item.id}`)}
                       >
                         <div className='w-[80px] h-[80px] sm:w-[120px] sm:h-[120px] shrink-0 rounded-[12px] relative overflow-hidden'>
-                          <ImageWithFallback
+                          <ImageWithInitial
                             src={safe}
                             alt={item.name}
+                            fallbackText={item.name}
                             fill
                             className='object-cover'
                             sizes='(max-width: 768px) 80px, 120px'

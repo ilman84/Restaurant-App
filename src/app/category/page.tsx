@@ -3,7 +3,7 @@
 import { Suspense, useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 // Image imported via fallback component
-import ImageWithFallback from '@/components/ui/ImageWithFallback';
+import ImageWithInitial from '@/components/ui/ImageWithInitial';
 import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
 import {
@@ -452,12 +452,13 @@ function CategoryPageInner() {
                           className='flex pt-[16px] pr-[16px] pb-[16px] pl-[16px] gap-[12px] items-center bg-[#fff] rounded-[16px] shadow-[0_0_20px_0_rgba(202,201,201,0.25)] hover:shadow-[0_0_25px_0_rgba(202,201,201,0.35)] transition-shadow'
                         >
                           <div className='w-[120px] h-[120px] shrink-0 rounded-[12px] relative overflow-hidden'>
-                            <ImageWithFallback
+                            <ImageWithInitial
                               src={
                                 menuThumbByRestaurantId[r.id] ||
                                 getRestaurantImage(r)
                               }
                               alt={r.name}
+                              fallbackText={r.name}
                               fill
                               className='object-cover'
                               sizes='120px'

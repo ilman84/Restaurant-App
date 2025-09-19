@@ -4,7 +4,7 @@ import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
+import ImageWithInitial from '@/components/ui/ImageWithInitial';
 import { orderService } from '@/services/orderService';
 import { cartService, CartGroup } from '@/services/cartService';
 import { formatRupiah } from '@/lib/utils';
@@ -274,11 +274,12 @@ export default function CheckoutPage() {
                           <div className='flex justify-between items-center self-stretch shrink-0 flex-nowrap relative z-[13] mb-[12px]'>
                             <div className='flex w-[141px] gap-[8px] items-center shrink-0 flex-nowrap relative z-[14]'>
                               <div className='w-[32px] h-[32px] shrink-0 rounded-[8px] relative z-[15] overflow-hidden'>
-                                <Image
+                                <ImageWithInitial
                                   src={
                                     group.restaurant.logo || '/images/store.png'
                                   }
                                   alt={group.restaurant.name}
+                                  fallbackText={group.restaurant.name}
                                   fill
                                   className='object-cover'
                                   sizes='32px'
@@ -296,9 +297,10 @@ export default function CheckoutPage() {
                             >
                               <div className='flex w-[140px] gap-[12px] items-center shrink-0 flex-nowrap relative z-20'>
                                 <div className='w-[60px] h-[60px] shrink-0 rounded-[8px] relative z-[21] overflow-hidden'>
-                                  <Image
+                                  <ImageWithInitial
                                     src={item.menu.image}
                                     alt={item.menu.foodName}
+                                    fallbackText={item.menu.foodName}
                                     fill
                                     className='object-cover'
                                     sizes='60px'
